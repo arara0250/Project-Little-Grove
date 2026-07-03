@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
 
     private Rigidbody2D _rb;
+    private Animator _anim;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
     }
 
     // 물리연산 (ex.Rigidbody) 은 FixedUpdate() 권장
@@ -21,6 +23,18 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        _anim.SetBool("IsWalking", true);
+
+        if (context.canceled) 
+        { 
+            _anim.SetBool("IsWalking", false);
+            _anim.SetFloat("LastInputX", moveInput.x);
+            _anim.SetFloat("LastInputY", moveInput.y);
+        }
+        
         moveInput = context.ReadValue<Vector2>();
+
+        _anim.SetFloat("InputX", moveInput.x);
+        _anim.SetFloat("InputY", moveInput.y);
     }
 }
