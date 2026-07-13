@@ -152,7 +152,7 @@ BlendTree:
     m_DirectBlendParameter: LastInputX
     m_Mirror: 0
   m_BlendParameter: LastInputX
-  m_BlendParameterY: LastInputX
+  m_BlendParameterY: LastInputY
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
